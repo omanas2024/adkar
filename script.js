@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderCounters() {
         const container = document.getElementById("counterContainer");
         container.innerHTML = "";
+
         counters.forEach((counter, index) => {
             const counterElement = document.createElement("div");
             counterElement.className = "counter";
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <select onchange="handleAdkarSelection(${index}, this.value)">
                     ${defaultAdkar.map(dhikr => `<option value="${dhikr}" ${counter.name === dhikr ? "selected" : ""}>${dhikr}</option>`).join("")}
                 </select>
-                <input type="text" id="custom-dhikr-${index}" placeholder="اكتب الذكر هنا..." value="${counter.customName || ''}" oninput="updateCustomDhikr(${index}, this.value)">
+                <input type="text" id="custom-dhikr-${index}" placeholder="اكتب الذكر هنا..." value="${counter.customName || ''}" oninput="updateCustomDhikr(${index}, this.value)" ${counter.name !== "ذكر جديد..." ? 'style="display: none;"' : ''}>
                 <div class="button-group">
                     <button onclick="decrease(${index})">➖</button>
                     <span id="counter-value-${index}">${counter.value}</span>
@@ -36,9 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <input type="color" class="color-picker" onchange="changeColor(${index}, this.value)" value="${counter.color || '#f9f9f9'}">
             `;
-            if (counter.name === "ذكر جديد...") {
-                counterElement.querySelector(`#custom-dhikr-${index}`).style.display = "block";
-            }
             counterElement.style.backgroundColor = counter.color || "#f9f9f9";
             container.appendChild(counterElement);
         });
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addCounter = function () {
-        counters.push({ name: defaultAdkar[0], customName: "", value: 0, color: "#f9f9f9" });
+        counters.push({ name: "اختر الذكر 🔻", customName: "", value: 0, color: "#f9f9f9" });
         renderCounters();
     };
 
@@ -54,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         counters[index].name = value;
         if (value === "ذكر جديد...") {
             counters[index].customName = "";
+            document.getElementById(`custom-dhikr-${index}`).style.display = "block";
+        } else {
+            document.getElementById(`custom-dhikr-${index}`).style.display = "none";
         }
         renderCounters();
     };
