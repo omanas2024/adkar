@@ -8,9 +8,21 @@
 </head>
 <body>
 
-    <h1>المسبحة الإلكترونية</h1>
-    <button class="add-counter" onclick="addCounter()">➕</button>
-    <div class="counter-container" id="counterContainer"></div>
+    <audio id="introAudio">
+        <source src="https://server8.mp3quran.net/minsh/001.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h1>المسبحة الإلكترونية</h1>
+
+        <div class="controls">
+            <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
+            <button class="reset-all" onclick="resetAllCounters()">🔄 إعادة تعيين الكل</button>
+        </div>
+
+        <button class="add-counter" onclick="addCounter()">➕</button>
+        <div class="counter-container" id="counterContainer"></div>
+    </div>
 
     <script src="script.js"></script>
 
