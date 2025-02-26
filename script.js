@@ -22,4 +22,52 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             container.appendChild(counterElement);
         });
-   
+        saveCounters();
+    }
+
+    window.addCounter = function () {
+        counters.push({ value: 0 });
+        renderCounters();
+    };
+
+    window.increase = function (index) {
+        counters[index].value++;
+        renderCounters();
+    };
+
+    window.decrease = function (index) {
+        if (counters[index].value > 0) {
+            counters[index].value--;
+            renderCounters();
+        }
+    };
+
+    window.resetCounter = function (index) {
+        counters[index].value = 0;
+        renderCounters();
+    };
+
+    window.deleteCounter = function (index) {
+        counters.splice(index, 1);
+        renderCounters();
+    };
+
+    window.toggleDarkMode = function () {
+        darkMode = !darkMode;
+        document.body.classList.toggle("dark-mode", darkMode);
+        localStorage.setItem("darkMode", darkMode ? "enabled" : "disabled");
+    };
+
+    window.resetAllCounters = function () {
+        if (confirm("هل تريد إعادة تعيين جميع العدادات؟")) {
+            counters = [];
+            renderCounters();
+        }
+    };
+
+    function saveCounters() {
+        localStorage.setItem("counters", JSON.stringify(counters));
+    }
+
+    renderCounters();
+});
