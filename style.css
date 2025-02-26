@@ -1,58 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    direction: rtl;
-    transition: background 0.5s, color 0.5s;
-}
-
-.counter-container {
-    width: 60%;
-    margin: auto;
-}
-
-.counter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-    padding: 15px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    background: #f9f9f9;
-}
-
-.counter select {
-    width: 80%;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 6px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-}
-
-button {
-    font-size: 18px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: none;
-    background-color: #87CEFA;
-    color: black;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
+/* الوضع العادي */
 span {
     font-size: 28px;
     font-weight: bold;
@@ -63,10 +9,7 @@ span {
     background: #fff;
     border: 2px solid #000;
     border-radius: 8px;
-}
-
-.color-picker {
-    margin-top: 10px;
+    color: black; /* اجعل النص داكنًا */
 }
 
 /* الوضع الليلي */
@@ -75,7 +18,8 @@ span {
     color: white;
 }
 
-.dark-mode .counter {
-    background: #444;
-    border-color: #fff;
+.dark-mode span {
+    background: #444; /* اجعل الخلفية داكنة */
+    color: white; /* اجعل النص فاتحًا */
+    border-color: white;
 }
