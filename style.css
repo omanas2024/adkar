@@ -1,4 +1,46 @@
-/* الوضع العادي */
+/* إعدادات الصفحة الأساسية */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    direction: rtl;
+    background: #f9f9f9;
+    color: black;
+    transition: background 0.5s, color 0.5s;
+}
+
+/* تنسيق العداد */
+.counter-container {
+    width: 60%;
+    margin: auto;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+/* تنسيق قائمة الأذكار */
+.counter select {
+    width: 80%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 6px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+}
+
+/* تنسيق الأرقام */
 span {
     font-size: 28px;
     font-weight: bold;
@@ -9,7 +51,33 @@ span {
     background: #fff;
     border: 2px solid #000;
     border-radius: 8px;
-    color: black; /* اجعل النص داكنًا */
+    color: black;
+}
+
+/* تنسيق الأزرار */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+button {
+    font-size: 18px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    background-color: #87CEFA;
+    color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* لون مخصص لكل مسبحة */
+.color-picker {
+    margin-top: 10px;
 }
 
 /* الوضع الليلي */
@@ -18,8 +86,38 @@ span {
     color: white;
 }
 
+/* إصلاح مشكلة الأرقام في الوضع الليلي */
 .dark-mode span {
-    background: #444; /* اجعل الخلفية داكنة */
-    color: white; /* اجعل النص فاتحًا */
+    background: #333;
+    color: white;
     border-color: white;
+}
+
+.dark-mode .counter {
+    background: #444;
+    border-color: white;
+}
+
+.dark-mode button {
+    background-color: #555;
+    color: white;
+}
+
+.dark-mode select {
+    background: #555;
+    color: white;
+    border: 1px solid white;
+}
+
+/* تنسيق حقل إدخال الذكر المخصص */
+.counter input[type="text"] {
+    display: none;
+    width: 80%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
