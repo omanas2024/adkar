@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     let counters = JSON.parse(localStorage.getItem("counters")) || [];
+    let darkMode = localStorage.getItem("darkMode") === "enabled";
 
     const defaultAdkar = [
         "اختر الذكر 🔻",
@@ -8,19 +9,26 @@ document.addEventListener("DOMContentLoaded", function () {
         "سبحان الله",
         "الحمد لله",
         "الله أكبر",
-        "لا حول ولا قوة إلا بالله"
+        "لا حول ولا قوة إلا بالله",
+        "ذكر جديد..."
     ];
 
     function renderCounters() {
         const container = document.getElementById("counterContainer");
         container.innerHTML = "";
+
         counters.forEach((counter, index) => {
             const counterElement = document.createElement("div");
             counterElement.className = "counter";
+            if (counter.name === "ذكر جديد...") {
+                counterElement.classList.add("show-custom");
+            }
+
             counterElement.innerHTML = `
-                <select onchange="updateName(${index}, this.value)">
+                <select onchange="handleAdkarSelection(${index}, this.value)">
                     ${defaultAdkar.map(dhikr => `<option value="${dhikr}" ${counter.name === dhikr ? "selected" : ""}>${dhikr}</option>`).join("")}
                 </select>
+                <input type="text" id="custom-dhikr-${index}" placeholder="اكتب الذكر هنا..." value="${counter.customName || ''}" oninput="updateCustomDhikr(${index}, this.value)">
                 <div class="button-group">
                     <button onclick="decrease(${index})">➖</button>
                     <span id="counter-value-${index}">${counter.value}</span>
@@ -40,48 +48,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addCounter = function () {
-        counters.push({ name: defaultAdkar[0], value: 0, color: "#f9f9f9" });
+        counters.push({ name: "اختر الذكر 🔻", customName: "", value: 0, color: "#f9f9f9" });
         renderCounters();
     };
 
-    window.increase = function (index) {
-        counters[index].value++;
-        renderCounters();
-    };
-
-    window.decrease = function (index) {
-        if (counters[index].value > 0) {
-            counters[index].value--;
-            renderCounters();
+    window.handleAdkarSelection = function (index, value) {
+        counters[index].name = value;
+        if (value === "ذكر جديد...") {
+            counters[index].customName = "";
         }
-    };
-
-    window.resetCounter = function (index) {
-        counters[index].value = 0;
         renderCounters();
     };
 
-    window.setCounter = function (index) {
-        let newValue = prompt("أدخل القيمة الجديدة للمسبحة:", counters[index].value);
-        if (newValue !== null && !isNaN(newValue)) {
-            counters[index].value = parseInt(newValue);
-            renderCounters();
-        }
-    };
-
-    window.updateName = function (index, newName) {
-        counters[index].name = newName;
+    window.updateCustomDhikr = function (index, value) {
+        counters[index].customName = value;
         saveCounters();
-    };
-
-    window.deleteCounter = function (index) {
-        counters.splice(index, 1);
-        renderCounters();
-    };
-
-    window.changeColor = function (index, newColor) {
-        counters[index].color = newColor;
-        renderCounters();
     };
 
     function saveCounters() {
