@@ -33,6 +33,12 @@ body {
     text-align: center;
 }
 
+/* تنسيق زر + ليكون على اليمين */
+.add-counter {
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
 /* تنسيق قائمة الأذكار */
 .counter select {
     width: 100%;
@@ -79,64 +85,3 @@ button {
 }
 
 button:hover {
-    opacity: 0.8;
-}
-
-/* تصغير زر الإعدادات والتصفير */
-button img {
-    width: 20px;
-    height: 20px;
-}
-
-/* لون مخصص لكل مسبحة */
-.color-picker {
-    margin-top: 10px;
-}
-
-/* الوضع الليلي */
-.dark-mode {
-    background: #222;
-    color: white;
-}
-
-.dark-mode span {
-    background: #444;
-    color: white;
-    border-color: white;
-}
-
-.dark-mode .counter-container {
-    background: #333;
-    border-color: white;
-}
-
-.dark-mode button {
-    background-color: #555;
-    color: white;
-}
-
-.dark-mode select {
-    background: #555;
-    color: white;
-    border: 1px solid white;
-}
-
-/* تحسين إدخال الذكر الجديد */
-.counter input[type="text"] {
-    display: none;
-    width: 90%;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 6px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background: white;
-    color: black;
-}
-
-/* إظهار حقل إدخال الذكر الجديد عند الاختيار */
-.counter.show-custom input[type="text"] {
-    display: block;
-}
