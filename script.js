@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     let counters = JSON.parse(localStorage.getItem("counters")) || [];
-    let darkMode = localStorage.getItem("darkMode") === "enabled";
 
     const defaultAdkar = [
         "اختر الذكر 🔻",
@@ -9,22 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "سبحان الله",
         "الحمد لله",
         "الله أكبر",
-        "لا حول ولا قوة إلا بالله",
-        "ذكر جديد..."
+        "لا حول ولا قوة إلا بالله"
     ];
 
     function renderCounters() {
         const container = document.getElementById("counterContainer");
         container.innerHTML = "";
-
         counters.forEach((counter, index) => {
             const counterElement = document.createElement("div");
             counterElement.className = "counter";
             counterElement.innerHTML = `
-                <select onchange="handleAdkarSelection(${index}, this.value)">
+                <select onchange="updateName(${index}, this.value)">
                     ${defaultAdkar.map(dhikr => `<option value="${dhikr}" ${counter.name === dhikr ? "selected" : ""}>${dhikr}</option>`).join("")}
                 </select>
-                <input type="text" id="custom-dhikr-${index}" placeholder="اكتب الذكر هنا..." value="${counter.customName || ''}" oninput="updateCustomDhikr(${index}, this.value)" ${counter.name !== "ذكر جديد..." ? 'style="display: none;"' : ''}>
                 <div class="button-group">
                     <button onclick="decrease(${index})">➖</button>
                     <span id="counter-value-${index}">${counter.value}</span>
@@ -44,24 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addCounter = function () {
-        counters.push({ name: "اختر الذكر 🔻", customName: "", value: 0, color: "#f9f9f9" });
+        counters.push({ name: defaultAdkar[0], value: 0, color: "#f9f9f9" });
         renderCounters();
-    };
-
-    window.handleAdkarSelection = function (index, value) {
-        counters[index].name = value;
-        if (value === "ذكر جديد...") {
-            counters[index].customName = "";
-            document.getElementById(`custom-dhikr-${index}`).style.display = "block";
-        } else {
-            document.getElementById(`custom-dhikr-${index}`).style.display = "none";
-        }
-        renderCounters();
-    };
-
-    window.updateCustomDhikr = function (index, value) {
-        counters[index].customName = value;
-        saveCounters();
     };
 
     window.increase = function (index) {
@@ -89,6 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    window.updateName = function (index, newName) {
+        counters[index].name = newName;
+        saveCounters();
+    };
+
     window.deleteCounter = function (index) {
         counters.splice(index, 1);
         renderCounters();
@@ -99,35 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
         renderCounters();
     };
 
-    window.toggleDarkMode = function () {
-        darkMode = !darkMode;
-        document.body.classList.toggle("dark-mode", darkMode);
-        localStorage.setItem("darkMode", darkMode ? "enabled" : "disabled");
-    };
-
-    window.resetAllCounters = function () {
-        if (confirm("هل تريد إعادة تعيين جميع العدادات؟")) {
-            counters = [];
-            renderCounters();
-        }
-    };
-
     function saveCounters() {
         localStorage.setItem("counters", JSON.stringify(counters));
     }
 
-    function playIntroAudio() {
-        let audio = document.getElementById("introAudio");
-        if (!localStorage.getItem("audioPlayed")) {
-            audio.play();
-            localStorage.setItem("audioPlayed", "true");
-        }
-    }
-
-    if (darkMode) {
-        document.body.classList.add("dark-mode");
-    }
-
-    playIntroAudio();
     renderCounters();
 });
