@@ -1,14 +1,9 @@
-/* إعدادات الصفحة الأساسية */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     direction: rtl;
-    background: #f9f9f9;
-    color: black;
-    transition: background 0.5s, color 0.5s;
 }
 
-/* تنسيق العداد */
 .counter-container {
     width: 60%;
     margin: auto;
@@ -26,35 +21,22 @@ body {
     background: #f9f9f9;
 }
 
-/* تنسيق قائمة الأذكار */
+/* تنسيق قائمة الأذكار مع تكبير الخط */
 .counter select {
     width: 80%;
     text-align: center;
-    font-size: 22px;
+    font-size: 22px; /* تكبير حجم الذكر */
     font-weight: bold;
     padding: 6px;
     margin-bottom: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    background-color: white;
-    color: black;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="black"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>') no-repeat right 10px center;
+    background-size: 20px;
+    padding-right: 30px;
 }
 
-/* تنسيق الأرقام */
-span {
-    font-size: 28px;
-    font-weight: bold;
-    padding: 8px 14px;
-    min-width: 50px;
-    display: inline-block;
-    text-align: center;
-    background: #fff;
-    border: 2px solid #000;
-    border-radius: 8px;
-    color: black;
-}
-
-/* تنسيق الأزرار */
 .button-group {
     display: flex;
     justify-content: center;
@@ -75,49 +57,19 @@ button:hover {
     opacity: 0.8;
 }
 
+span {
+    font-size: 28px;
+    font-weight: bold;
+    padding: 8px 14px;
+    min-width: 50px;
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+}
+
 /* لون مخصص لكل مسبحة */
 .color-picker {
     margin-top: 10px;
-}
-
-/* الوضع الليلي */
-.dark-mode {
-    background: #222;
-    color: white;
-}
-
-/* إصلاح مشكلة الأرقام في الوضع الليلي */
-.dark-mode span {
-    background: #333;
-    color: white;
-    border-color: white;
-}
-
-.dark-mode .counter {
-    background: #444;
-    border-color: white;
-}
-
-.dark-mode button {
-    background-color: #555;
-    color: white;
-}
-
-.dark-mode select {
-    background: #555;
-    color: white;
-    border: 1px solid white;
-}
-
-/* تنسيق حقل إدخال الذكر المخصص */
-.counter input[type="text"] {
-    display: none;
-    width: 80%;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 6px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
 }
