@@ -1,0 +1,76 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  direction: rtl;
+}
+
+.counter-container {
+  width: 60%;
+  margin: auto;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  padding: 15px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+/* تنسيق قائمة الأذكار مع تكبير الخط */
+.counter select {
+  width: 80%;
+  text-align: center;
+  font-size: 22px; /* تكبير حجم الذكر */
+  font-weight: bold;
+  padding: 6px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="black"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>')
+    no-repeat right 10px center;
+  background-size: 20px;
+  padding-right: 30px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+button {
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  background-color: #87cefa;
+  color: black;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+span {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 8px 14px;
+  min-width: 50px;
+  display: inline-block;
+  text-align: center;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+/* لون مخصص لكل مسبحة */
+.color-picker {
+  margin-top: 10px;
+}
